@@ -3,11 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
-use App\Entity\Author;
-use App\Entity\Publisher;
-use App\Entity\Status;
 use App\Entity\User;
+use App\Entity\Author;
+use App\Entity\Status;
 use App\Entity\UserBook;
+use App\Entity\Publisher;
+use App\Entity\Invitation;
 use Symfony\Component\HttpFoundation\Response;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -38,5 +39,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Status', 'fas fa-info-circle', Status::class);
         yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('UserBooks', 'fas fa-book-reader', UserBook::class);
+        yield MenuItem::linkToCrud('Invitation', 'fas fa-envelope', Invitation::class);
     }
 }
