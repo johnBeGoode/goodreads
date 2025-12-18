@@ -8,7 +8,6 @@ use App\Entity\Author;
 use App\Entity\Status;
 use App\Entity\UserBook;
 use App\Entity\Publisher;
-use DateTimeImmutable;
 use Faker\Factory as Faker;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -55,8 +54,8 @@ class AppFixtures extends Fixture
                 ->setIsbn10($faker->isbn10())
                 ->setIsbn13($faker->isbn13())
                 ->setPageCount($faker->numberBetween(100, 1000))
-                ->setThumbnail($faker->imageUrl(200, 300))
-                ->setSmallThumbnail($faker->imageUrl(100, 150))
+                ->setThumbnail('https://picsum.photos/200/300')
+                ->setSmallThumbnail('https://picsum.photos/100/150')
                 ->addAuthor($faker->randomElement($authors))
                 ->setPublishers($faker->randomElement($publishers));
             $manager->persist($book);
