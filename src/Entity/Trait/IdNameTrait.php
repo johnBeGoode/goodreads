@@ -2,9 +2,7 @@
 
 namespace App\Entity\Trait;
 
-use App\Repository\StatusRepository;
 use Doctrine\ORM\Mapping as ORM;
-
 
 Trait IdNameTrait
 {
