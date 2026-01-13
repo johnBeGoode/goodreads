@@ -23,11 +23,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
-            # login_link:
-            #     check_route: app_login
-            #     lifetime: 600
-            #     max_uses: 1
-            #     success_handler: App\Security\Authentication\AuthenticationSuccessHandler
+                default_target_path: app_profile
             logout:
                 path: app_logout
                 # where to redirect after logout
