@@ -3,6 +3,31 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur Goodreads</h1>
-    <p>Lisez et partager votre liste de lecture</p>
+    {% if app.user.pseudo == "admin"  %}
+            <a href="{{ path("admin") }}" class="float-end rounded-pill border border-primary bg-dark text-white text-decoration-none px-3 py-2">Admin</a>
+    {% endif %}
+    <div class="px-4 py-5 my-3 text-center">
+        <img
+            class="d-block mx-auto mb-4"
+            src="{{ asset("img/growth-book.svg") }}"
+            alt=""
+            width="72"
+            height="57"
+        />
+        <h1 class="display-5 fw-bold text-body-emphasis">Welcome on Goodreads</h1>
+        <h2>Read and share your book list with entire world !</h2>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead my-5">
+                You’re in the right place. Tell us what titles or genres you’ve enjoyed in the past, and we’ll give you surprisingly insightful recommendations.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
+                    Start
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+                    Explore
+                </button>
+            </div>
+        </div>
+    </div>
 {% endblock %}
