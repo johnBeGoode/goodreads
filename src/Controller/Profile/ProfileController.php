@@ -2,17 +2,43 @@
 
 namespace App\Controller\Profile;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\GoogleBooksApiService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/profile', name: 'app_profile_')]
 final class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
+    public function __construct(
+        private readonly GoogleBooksApiService $googleBooksApiService,
+    ) {
+    }
+
+
+    #[Route('/', name: 'index')]
     public function index(): Response
     {
-        return $this->render('profile/profile/index.html.twig', [
+        return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
+    }
+
+    #[Route('/search', name: 'search')]
+    public function search(): Response
+    {
+        return $this->render('profile/search.html.twig');
+    }
+
+        #[Route('/search/api', name: 'search_api', methods: ['POST'])]
+    public function searchApi(Request $request ): Response
+    {
+        $search = $request->request->get('search');
+
+        return $this->render('profile/_api.html.twig', [
+            'search' => $this->googleBooksApiService->search($search)
+        ]);
+
     }
 }

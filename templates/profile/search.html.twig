@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    <h2>Search Books</h2>
+    <input 
+        class="form-control w-50" type="search"
+        name="search" placeholder="Begin Typing To Search Books..."
+        hx-post="/profile/search/api"
+        hx-trigger="keyup changed delay:500ms, search"
+        hx-target="#search-results"
+    >
+    <div id="search-results"></div>
+{% endblock %}
