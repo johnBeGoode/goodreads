@@ -3,9 +3,12 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    {% if "ROLE_ADMIN" in app.user.roles  %}
+    {% if app.user.roles is defined %}
+        {% if "ROLE_ADMIN" in app.user.roles %}
             <a href="{{ path("admin") }}" class="float-end rounded-pill border border-primary bg-dark text-white text-decoration-none px-3 py-2">Admin</a>
+        {% endif %}
     {% endif %}
+
     <div class="px-4 py-5 my-3 text-center">
         <img
             class="d-block mx-auto mb-4"

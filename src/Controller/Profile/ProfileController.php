@@ -2,6 +2,8 @@
 
 namespace App\Controller\Profile;
 
+use App\Entity\UserBook;
+use App\Service\ProfileService;
 use App\Service\GoogleBooksApiService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +15,9 @@ final class ProfileController extends AbstractController
 {
     public function __construct(
         private readonly GoogleBooksApiService $googleBooksApiService,
+        private readonly ProfileService $profileService,
     ) {
     }
-
 
     #[Route('/', name: 'index')]
     public function index(): Response
@@ -39,6 +41,25 @@ final class ProfileController extends AbstractController
         return $this->render('profile/_api.html.twig', [
             'search' => $this->googleBooksApiService->search($search)
         ]);
-
     }
+
+        #[Route('/search/add/{id}', name: 'search_add', methods: ['GET'])]
+    public function searchAdd(string $id)
+    {
+        $userBook = $this->profileService->addBookToProfile($this->getUser(), $id);
+
+        return $this->redirectToRoute('app_profile_my_books', [
+            'id' => $userBook->getId(),
+        ]);
+    }
+
+    #[Route('/my-books/{id}', name: 'my_books')]
+    public function showOneBook(UserBook $userBook): Response
+    {
+        return $this->render('profile/show_one_book.html.twig', [
+            'userBook' => $userBook,
+        ]);
+    }
+
+
 }

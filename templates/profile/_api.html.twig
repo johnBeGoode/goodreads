@@ -11,7 +11,7 @@
                 {% endfor %}
             {% endif %}
 
-            {# <a href="{{ path('app_profile_search_add', {id: book.id}) }}">Ajouter à ma liste</a> #}
+            <a href="{{ path('app_profile_search_add', {id: book.id}) }}" class="text-decoration-none btn btn-primary">Ajouter à ma liste</a>
         </div>
     {% endfor %}
 {% endif %}
